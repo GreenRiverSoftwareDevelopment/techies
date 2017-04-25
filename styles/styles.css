@@ -1,0 +1,130 @@
+/* body styles */
+#body {
+    /*font-family: "Lucinda Console", "Lucinda Sans";
+    color: rgb(40, 40, 40);
+    background: rgb(190, 228, 133);*/
+}
+
+/* div styles */
+
+
+/* nav styles */
+
+
+/* heading styles */
+h1, a {
+    text-align: center;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+
+
+/* button styles */
+input[type="submit"] {
+    background-color: rgb(255, 156, 108);
+    color: white;
+}
+
+.button {
+    background-color: rgb(255, 156, 108);
+    border: none;
+    color: white;
+    padding: 10px 27px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+}
+
+/* footer styles */
+footer {
+   margin-top: 37.5em;
+   text-align: center;   
+}
+
+/* paddings */
+
+
+#checkbox-display label {
+			border-style: solid;
+			border-width: 1.5px;
+			padding: 5px 5px 5px 5px;
+			border-radius: 5px;
+			border-color: rgb(255, 156, 108);
+            background-color: rgba(181, 219, 253, 0.2);
+			margin: 2px 2px 2px 2px;
+			display: inline-block;
+			float: left;
+			width: 8em;
+			text-align: center;
+}
+ 
+#checkbox-display label:hover {
+	color: black;
+    letter-spacing: 2px;
+    background-color: rgb(181, 219, 253);
+}
+
+.radio-display label {
+			border-style: solid;
+			border-width: 1.5px;
+			padding: 5px 5px 5px 5px;
+			border-radius: 5px;
+			border-color: rgb(255, 156, 108);
+            background-color: rgba(181, 219, 253, 0.2);
+			margin: 2px 2px 2px 2px;
+			display: inline-block;
+			float: left;
+			width: 8em;
+			text-align: center;
+}
+ 
+.radio-display label:hover {
+	color: black;
+    letter-spacing: 2px;
+    background-color: rgb(181, 219, 253);
+}
+
+label input {
+	display: none;
+}
+
+label {
+    text-align: center;
+}
+
+input:checked + span {
+    font-weight: bold;
+    color: green;
+    font-size: 1em;
+    letter-spacing: 2px;
+}
+
+/* Color class's for text */
+.red {
+	color: red;
+}
+
+.orange {
+	color: orange;
+}
+
+.green {
+	color: green;
+}
+
+.blue {
+    color: rgb(0, 159, 236);
+}
+
+/* Other text modifications */
+hr {
+    background-color: gray !important;
+    color: gray !important;
+    border: solid 0.5px gray !important;
+    height: 1px !important;
+    width: 100% !important;
+}
+

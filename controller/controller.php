@@ -59,11 +59,49 @@
         {
             //retrieve users
             $data = new DataLayer();
-             
+            // if isset(post) {
+            	//$user = $data->logUser($_POST);
+            //}
+            //$user = $data->logUser($_POST);
             //load the view
             $this->_f3->set('title', 'Home');
             echo Template::instance()->render('view/home.php');
         }
+		
+        /**
+         * Method for logic to grab the data needed to build the signup page
+         *
+         * When a singup form is submitted validation occurs with the model
+         * otherwise when the request method is GET simply load the view
+         *
+         * @access public
+         */
+        public function signup()
+        {
+            $this->_f3->set('title', 'Signup');
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $data = new DataLayer();
+                //send post data to the model
+                $user = $data->logUser($_POST);
+                if (isset($user['email'])) {
+                    //set session variables for the user
+                    $_SESSION['logged'] = $user;
+                    $this->_f3->set('logged', $_SESSION['logged']);
+                   
+                    //When logged in, send the user to their profile
+                    header("Location: /myDashboard"); 
+                    
+                } else {
+                    $this->_f3->set('errors', $user);
+                }
+            } else {
+                $this->_f3->clear('errors');
+            }
+            
+            //load the view
+            echo Template::instance()->render('view/student-submit.php');
+        }
+
         
         
         /**
