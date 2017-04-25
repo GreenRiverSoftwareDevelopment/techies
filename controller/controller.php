@@ -62,9 +62,10 @@
             // if isset(post) {
             	//$user = $data->logUser($_POST);
             //}
-            //$user = $data->logUser($_POST);
+            $users = $data->getAllUsers();
             //load the view
             $this->_f3->set('title', 'Home');
+			$this->_f3->set('users', $users);
             echo Template::instance()->render('view/home.php');
         }
 		
