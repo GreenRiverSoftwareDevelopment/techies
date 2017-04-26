@@ -4,11 +4,11 @@
  *
  * This file is to handle requestions on the front-end and decide
  * what should happen next, whether it be forwarding the user to another page,
- * back to where they where previously, or pull/push data to/from the back-end. 
+ * back to where they where previously, or pull/push data to/from the back-end.
  *
  * PHP version 7
  *
- * LICENSE: Infomation here. 
+ * LICENSE: Infomation here.
  *
  * @author     Jacob Laqua <jlaqua@mail.greenriver.edu>
  * @author     Dmitriy Drkhipchuk <Darkhipchuk@mail.greenriver.edu>
@@ -17,7 +17,7 @@
  * @link       http://techies.greenrivertech.net/controller/controller.php
  */
     session_start();
-    
+
     /**
      * This class creates a Controller object
      *
@@ -29,7 +29,7 @@
     class Controller
     {
         private $_f3; //router
-       
+
         /**
          * Creates a new f3 object and sets the
          * nav bar location for use on view pages
@@ -44,9 +44,9 @@
             $this->_f3->set('head_title', 'view/modules/head.php');
             $this->_f3->set('footer', 'view/modules/footer.php');
         }
-         
+
         //methods
-        
+
         /**
          * Method for logic to grab the data needed to build the home/default page
          *
@@ -68,7 +68,7 @@
 			$this->_f3->set('users', $users);
             echo Template::instance()->render('view/home.php');
         }
-		
+
         /**
          * Method for logic to grab the data needed to build the signup page
          *
@@ -83,33 +83,36 @@
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $data = new DataLayer();
                 //send post data to the model
-                $user = $data->logUser($_POST);
+                $user = $data->logUser($_POST['fname'], $_POST['lname'], $_POST['school_email'], $_POST['prime_email'],
+                $_POST['bio'], $_POST['veteran'], $_POST['twitter'], $_POST['linkedin'], $_POST['facebook'],
+                $_POST['portfolio'], $_POST['github'], $_POST['degree'], $_POST['graduation'], $_POST['technologies']);
+
                 if (isset($user['email'])) {
                     //set session variables for the user
                     $_SESSION['logged'] = $user;
                     $this->_f3->set('logged', $_SESSION['logged']);
-                   
+
                     //When logged in, send the user to their profile
-                    header("Location: /myDashboard"); 
-                    
+                    header("Location: /myDashboard");
+
                 } else {
                     $this->_f3->set('errors', $user);
                 }
             } else {
                 $this->_f3->clear('errors');
             }
-            
+
             //load the view
             echo Template::instance()->render('view/student-submit.php');
         }
-		
+
 		public function login()
 		{
 			echo Template::instance()->render('view/login.php');
 		}
-		
+
         /**
-         * Method for logic to log a user out. 
+         * Method for logic to log a user out.
          *
          * session is unset/destroyed and the user is sent home
          *
@@ -121,18 +124,17 @@
             session_destroy();
             header("Location: /home");
         }
-		
+
 		public function about()
 		{
 			echo Template::instance()->render('view/about.php');
 		}
-		
-		public function page()
+
+		public function page($id)
 		{
-			$id = $f3->get('PARAMS.id');
 			echo Template::instance()->render('view/profile.php');
 		}
-		
+
 		public function dashboard()
 		{
 			echo Template::instance()->render('view/dashboard.php');
