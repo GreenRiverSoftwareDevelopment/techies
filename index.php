@@ -20,9 +20,16 @@
         $controller->home();    
     });
     
+    //route for dashboard
     $f3->route('GET|POST /dashboard', function($f3) {
         $controller = new Controller($f3);
         $controller->dashboard();    
+    });
+    
+    //route for about
+    $f3->route('GET /about', function($f3) {
+        $controller = new Controller($f3);
+        $controller->about();    
     });
     
     //route for the login page
@@ -41,6 +48,12 @@
     $f3->route('GET|POST /signup', function($f3) {
         $controller = new Controller($f3);
         $controller->signup();    
+    });
+    
+    //route for profile page
+    $f3->route('GET /page/@id', function($f3) {
+        $controller = new Controller($f3);
+        $controller->page();
     });
     
     $f3->run();

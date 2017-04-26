@@ -118,5 +118,10 @@
             session_destroy();
             header("Location: /home");
         }
+		
+		public function about()
+		{
+			echo Template::instance()->render('view/about.php');
+		}
     }
 ?>
