@@ -1,18 +1,18 @@
 <nav class="">
     <div class="container">
-        <div class="col-sm-12">
-            <div class="col-sm-3">
-                <div class="col-sm-12">
-                    <a href="{{ @BASE }}/about"><h3>About</h3></a>
+        <div class="jumbotron col-sm-12">
+            <div class="col-xs-12 col-sm-3">
+                <div class="col-xs-12 pull-left">
+                    <a class="about-link" href="{{ @BASE }}/about">About</a>
                 </div>                
             </div>
-            <div class="col-sm-6">
-                <div class="col-sm-12">
-                    <a href="{{ @BASE }}/home"><h1>Techies</h1></a> 
+            <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12 text-center">
+                    <a class="main-link" href="{{ @BASE }}/home">Techies</a> 
                 </div>             
             </div>
-            <div class="col-sm-3">
-                <div class="col-sm-12">
+            <div class="col-xs-12 col-sm-3">
+                <div class="col-xs-12">
                     
                 </div>
                 <!-- A link can go here -->

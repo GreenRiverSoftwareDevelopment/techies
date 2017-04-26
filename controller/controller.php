@@ -102,9 +102,12 @@
             //load the view
             echo Template::instance()->render('view/student-submit.php');
         }
-
-        
-        
+		
+		public function login()
+		{
+			echo Template::instance()->render('view/login.php');
+		}
+		
         /**
          * Method for logic to log a user out. 
          *
@@ -122,6 +125,17 @@
 		public function about()
 		{
 			echo Template::instance()->render('view/about.php');
+		}
+		
+		public function page()
+		{
+			$id = $f3->get('PARAMS.id');
+			echo Template::instance()->render('view/profile.php');
+		}
+		
+		public function dashboard()
+		{
+			echo Template::instance()->render('view/dashboard.php');
 		}
     }
 ?>

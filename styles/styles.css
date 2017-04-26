@@ -1,17 +1,41 @@
 /* body styles */
 #body {
-    /*font-family: "Lucinda Console", "Lucinda Sans";
-    color: rgb(40, 40, 40);
-    background: rgb(190, 228, 133);*/
+    background: #fffdf5;
 }
 
 /* div styles */
+.jumbotron {
+    background-color:transparent !important;
+}
 
 
 /* nav styles */
+.main-link:hover { 
+    color: gray;
+    text-decoration: none;
+}
+
+.about-link:hover { 
+    color: gray;
+    text-decoration: none;
+}
 
 
 /* heading styles */
+
+.main-link {
+    vertical-align: middle;
+    color: black;
+    font-size: 6em;
+
+}
+
+.about-link {
+    line-height: 6em;
+    color: black;
+    font-size: 1.5em;
+    
+}
 h1, a {
     text-align: center;
 }
