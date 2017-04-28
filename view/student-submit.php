@@ -8,7 +8,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                        
+
                     </div>
                     <div class="col-sm-6">
                         <div class="col-sm-12">
@@ -30,7 +30,7 @@
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-12 input-group">
-                                            <input type="email" class="form-control" name="primary_email" id="primary_email" class="inline-form" placeholder="Non-Student Email Address" required>
+                                            <input type="email" class="form-control" name="prime_email" id="primary_email" class="inline-form" placeholder="Non-Student Email Address" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
@@ -38,12 +38,12 @@
                                             <fieldset class="form-group radio-display">
                                               <h4>Are you a veteran of the US Armed Forces?</h4>
                                                 <div class="radio">
-                                                  <label><input type="radio" value="Y" name="veteran"><span>Yes</span></label>
+                                                  <label><input type="radio" value="1" name="veteran"><span>Yes</span></label>
                                                 </div>
                                                 <div class="radio">
-                                                  <label><input type="radio" value="N" name="veteran" checked><span>No</span></label>
+                                                  <label><input type="radio" value="0" name="veteran" checked><span>No</span></label>
                                                 </div>
-                                            </fieldset>   
+                                            </fieldset>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
@@ -56,13 +56,13 @@
                                                 <div class="radio">
                                                   <label><input type="radio" value="Network Security" name="degree"><span>Network Security</span></label>
                                                 </div>
-                                            </fieldset>   
+                                            </fieldset>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-12 form-group">
                                             <label for="bio">Elevator Pitch:</label>
-                                            <textarea class="form-control" maxlength="1000" rows="10" cols="50" id="bio" required></textarea>
+                                            <textarea class="form-control" name="bio" maxlength="1000" rows="10" cols="50" id="bio" required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
@@ -95,8 +95,14 @@
                                             <input type="text" class="form-control" name="facebook" id="facebook" class="inline-form" maxlength="200" placeholder="Facebook">
                                         </div>
                                     </div>
+                                    <div class="col-sm-6">
+                                        <div class="col-sm-12 input-group">
+                                            <div class="input-group-addon"><i class="fa fa-github"></i></div>
+                                            <input type="text" class="form-control" name="github" id="github" class="inline-form" maxlength="200" placeholder="github">
+                                        </div>
+                                    </div>
                                     <div class="col-sm-12 border-left">
-                                        <div class="col-sm-12"> 
+                                        <div class="col-sm-12">
                                             <fieldset class="form-group" id="checkbox-display">
                                               <h4>Favorite Technologies:</h4>
                                                 <div class="checkbox">
@@ -180,23 +186,23 @@
                                                 <div class="checkbox">
                                                   <label><input type="checkbox" value="Wordpress" name="technologies"><span>Wordpress</span></label>
                                                 </div>
-                                                
-                                            </fieldset>   
+
+                                            </fieldset>
                                         </div>
-                                    </div>  
-                                  
-                        </div>           
+                                    </div>
+
+                        </div>
                                 <div class="col-sm-offset-4 col-sm-4">
                                     <input id="signup-submit" type="submit" value="Submit" class="form-control btn">
-                                </div>                           
-                            </form>                    
-        
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>
             </div>
         <footer>
-            <include href="{{ @footer }}" />   
-        </footer>    
+            <include href="{{ @footer }}" />
+        </footer>
     </body>
 </html>

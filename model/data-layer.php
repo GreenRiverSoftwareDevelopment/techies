@@ -44,23 +44,22 @@
         }
 
         //methods
-        public function logUser($fname, $lname, $imagePath, $schoolEmail, $primaryEmail, $bio, $veteren, $twitter, $linkedIn, $facebook, $portfolio, $github, $degree, $graduation, $technologies)
+        public function logUser($fname, $lname, $school_email, $prime_email, $bio, $veteran, $twitter, $linkedin, $facebook, $portfolio, $github, $degree, $graduation, $technologies)
         {
           $pdo = getConnection();
 
-          $insert = 'INSERT INTO profiles (fname, lname, imagePath, schoolEmail, primaryEmail, bio, veteren, twitter, linkedIn, facebook, portfolio, github, degree, graduation, technologies)
-                     VALUES (:fname, :lname, :imagePath, :schoolEmail, :primaryEmail, :bio, :veteren, :twitter, :linkedIn, :facebook, :portfolio, :github, :degree, :graduation, :technologies)';
+          $insert = 'INSERT INTO profiles (fname, lname, school_email, prime_email, bio, veteran, twitter, linkedin, facebook, portfolio, github, degree, graduation, technologies)
+                     VALUES (:fname, :lname, :school_email, :prime_email, :bio, :veteren, :twitter, :linkedin, :facebook, :portfolio, :github, :degree, :graduation, :technologies)';
 
           $statement = $pdo->prepare($insert);
-          $statement->bindValue(':name', $fname, PDO::PARAM_STR);
-          $statement->bindValue(':type', $lname, PDO::PARAM_STR);
-          $statement->bindValue(':imagePath', $imagePath, PDO::PARAM_STR);
-          $statement->bindValue(':schoolEmail', $schoolEmail, PDO::PARAM_STR);
-          $statement->bindValue(':primaryEmail', $primaryEmail, PDO::PARAM_STR);
+          $statement->bindValue(':fname', $fname, PDO::PARAM_STR);
+          $statement->bindValue(':lname', $lname, PDO::PARAM_STR);
+          $statement->bindValue(':school_email', $school_email, PDO::PARAM_STR);
+          $statement->bindValue(':prime_email', $prime_email, PDO::PARAM_STR);
           $statement->bindValue(':bio', $bio, PDO::PARAM_STR);
-          $statement->bindValue(':veteren', $veteren, PDO::PARAM_STR);
+          $statement->bindValue(':veteren', $veteran, PDO::PARAM_STR);
           $statement->bindValue(':twitter', $twitter, PDO::PARAM_STR);
-          $statement->bindValue(':linkedIn', $linkedIn, PDO::PARAM_STR);
+          $statement->bindValue(':linkedin', $linkedin, PDO::PARAM_STR);
           $statement->bindValue(':facebook', $facebook, PDO::PARAM_STR);
           $statement->bindValue(':portfolio', $portfolio, PDO::PARAM_STR);
           $statement->bindValue(':github', $github, PDO::PARAM_STR);
@@ -157,7 +156,7 @@
           {
               $pdo = getConnection();
 
-              $update = 'UPDATE profiles SET visibility = true  WHERE id=:id';
+              $update = 'UPDATE profiles SET visibility = "1"  WHERE id=:id';
 
               $statement = $pdo->prepare($update);
 

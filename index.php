@@ -51,9 +51,9 @@
     });
     
     //route for profile page
-    $f3->route('GET /page/@id', function($f3) {
+    $f3->route('GET /meet/@id', function($f3, $params) {
         $controller = new Controller($f3);
-        $controller->page();
+        $controller->page($params['id']);
     });
     
     $f3->run();
