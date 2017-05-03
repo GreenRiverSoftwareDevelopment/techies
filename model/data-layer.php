@@ -47,6 +47,9 @@
         public function logUser($fname, $lname, $school_email, $prime_email, $bio, $veteran, $twitter, $linkedin, $facebook, $portfolio, $github, $degree, $graduation, $technologies)
         {
           $pdo = getConnection();
+          
+          $technologies = implode(", ", $technologies);
+          
 
           $insert = 'INSERT INTO profiles (fname, lname, school_email, prime_email, bio, veteran, twitter, linkedin, facebook, portfolio, github, degree, graduation, technologies)
                      VALUES (:fname, :lname, :school_email, :prime_email, :bio, :veteren, :twitter, :linkedin, :facebook, :portfolio, :github, :degree, :graduation, :technologies)';
@@ -126,12 +129,12 @@
           {
               $pdo = getConnection();
 
-              $select = 'SELECT * FROM profiles';
+              $select = "SELECT id, fname, lname, image_path, DATE_FORMAT(graduation,'%b %Y') AS grad_date FROM profiles WHERE visibility = 1";
 
               $results = $pdo->query($select);
 
               $rows = $results->fetchAll(PDO::FETCH_ASSOC);
-
+                
               return $rows;
           }
 

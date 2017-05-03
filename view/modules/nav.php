@@ -2,7 +2,7 @@
     <div class="container">
         <div class="jumbotron col-sm-12">
             <div class="col-xs-12 col-sm-3">
-                <div class="col-xs-12 pull-left">
+                <div class="col-xs-12 text-center">
                     <a class="about-link" href="{{ @BASE }}/about">About</a>
                 </div>                
             </div>
@@ -12,12 +12,10 @@
                 </div>             
             </div>
             <div class="col-xs-12 col-sm-3">
-                <div class="col-xs-12">
-                    
+                <div class="col-xs-12 text-center">
+                    <a class="about-link" href="http://www.greenriver.edu/academics/areas-of-study/bas-programs/software-development.htm" target="_blank" >Contact</a>
                 </div>
-                <!-- A link can go here -->
             </div>
         </div>
-        <hr>
     </div>
 </nav>
