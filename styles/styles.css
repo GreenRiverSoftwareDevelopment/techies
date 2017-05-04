@@ -8,16 +8,29 @@
     background-color:transparent !important;
 }
 
+.bio-area {
+     background-color: white;
+     height: 35em;
+}
+
+
 
 /* nav styles */
-.main-link:hover { 
+.hover-link:hover { 
     color: gray;
     text-decoration: none;
+    border-bottom: 3px solid #188c3c;
+    
 }
 
 .about-link:hover { 
     color: gray;
     text-decoration: none;
+}
+
+.current {
+    border-bottom: 3px solid #188c3c;
+    overflow: hidden;
 }
 
 

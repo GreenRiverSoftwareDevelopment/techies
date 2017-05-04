@@ -132,6 +132,13 @@
 
 		public function page($id)
 		{
+			$data = new DataLayer();
+            
+			//send post data to the model
+            $user = $data->getSingleUser($id);
+			
+			$this->_f3->set('title', $user['fname'] . " " . $user['lname']);
+			$this->_f3->set('user', $user);
 			echo Template::instance()->render('view/profile.php');
 		}
 

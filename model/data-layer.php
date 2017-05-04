@@ -49,6 +49,7 @@
           $pdo = getConnection();
           
           $technologies = implode(", ", $technologies);
+          var_dump($technologies); exit(0);
           
 
           $insert = 'INSERT INTO profiles (fname, lname, school_email, prime_email, bio, veteran, twitter, linkedin, facebook, portfolio, github, degree, graduation, technologies)
@@ -142,16 +143,16 @@
           {
               $pdo = getConnection();
 
-              $select = 'SELECT * FROM profiles
-                               WHERE id=:id';
+              $select = "SELECT id, fname, lname, image_path, degree, technologies, bio, veteran, DATE_FORMAT(graduation,'%b %Y') AS grad_date FROM profiles
+                               WHERE id=:id";
 
               $statement = $pdo->prepare($select);
 
-              $statement->bindValue(':is', $id, PDO::PARAM_STR);
+              $statement->bindValue(':id', $id, PDO::PARAM_INT);
               $statement->execute();
 
-              $row = $statement->fetchAll(PDO::FETCH_ASSOC);
-
+              $row = $statement->fetch(PDO::FETCH_ASSOC);
+            
               return $row;
           }
 

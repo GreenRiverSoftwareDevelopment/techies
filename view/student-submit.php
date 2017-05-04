@@ -54,7 +54,7 @@
                                         <div class="col-sm-12">
                                             <fieldset class="form-group radio-display">
                                                 <span class="red">* <i>Required</i></span>
-                                              <h4>Major:</h4>
+                                              <h4><i class="fa fa-asterisk red"></i> Major:</h4>
                                                 <div class="radio">
                                                   <label><input type="radio" value="Software Development" name="degree"><span>Software Development</span></label>
                                                 </div>
@@ -66,13 +66,14 @@
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-12 form-group">
+                                            <i class="fa fa-asterisk red"></i>
                                             <label for="bio">Elevator Pitch:</label>
                                             <textarea class="form-control" name="bio" maxlength="1000" rows="10" cols="50" id="bio" placeholder="Tell us who you are, what you do best, how you have made an impact, what sets you apart, and what you are seeking. Be friendly, conversational, and concise." required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-12 input-group">
-                                            <div class="input-group-addon">Graduation Date</div>
+                                            <div class="input-group-addon"><i class="fa fa-asterisk red"></i> Graduation Date</div>
                                             <input type="date" class="form-control" name="graduation" id="graduation" class="inline-form" required>
                                         </div>
                                     </div>
@@ -109,87 +110,87 @@
                                     <div class="col-sm-12 border-left">
                                         <div class="col-sm-12">
                                             <fieldset class="form-group" id="checkbox-display">
-                                              <h4>Favorite Technologies:</h4>
+                                              <h4><i class="fa fa-asterisk red"></i> Favorite Technologies (pick up to 5):</h4>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="HTML" name="technologies[]"><span>HTML</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="HTML" name="technologies[]"><span>HTML</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="CSS" name="technologies[]"><span>CSS</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="CSS" name="technologies[]"><span>CSS</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="XML" name="technologies[]"><span>XML</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="XML" name="technologies[]"><span>XML</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="PHP" name="technologies[]"><span>PHP</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="PHP" name="technologies[]"><span>PHP</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Java" name="technologies[]"><span>Java</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Java" name="technologies[]"><span>Java</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="JavaScript" name="technologies[]"><span>JavaScript</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="JavaScript" name="technologies[]"><span>JavaScript</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Linux" name="technologies[]"><span>Linux</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Linux" name="technologies[]"><span>Linux</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Python" name="technologies[]"><span>Python</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Python" name="technologies[]"><span>Python</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="SQL" name="technologies[]"><span>SQL</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="SQL" name="technologies[]"><span>SQL</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="NoSQL" name="technologies[]"><span>NoSQL</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="NoSQL" name="technologies[]"><span>NoSQL</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="MySQL" name="technologies[]"><span>MySQL</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="MySQL" name="technologies[]"><span>MySQL</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="C#" name="technologies[]"><span>C#</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="C#" name="technologies[]"><span>C#</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="C++" name="technologies[]"><span>C++</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="C++" name="technologies[]"><span>C++</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="LAMP stack" name="technologies[]"><span>LAMP stack</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="LAMP stack" name="technologies[]"><span>LAMP stack</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="MEAN stack" name="technologies[]"><span>MEAN stack</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="MEAN stack" name="technologies[]"><span>MEAN stack</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Node.js" name="technologies[]"><span>Node.js</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Node.js" name="technologies[]"><span>Node.js</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Angular.js" name="technologies[]"><span>Angular.js</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Angular.js" name="technologies[]"><span>Angular.js</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Rest.js" name="technologies[]"><span>Rest.js</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Rest.js" name="technologies[]"><span>Rest.js</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Meteor.js" name="technologies[]"><span>Meteor.js</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Meteor.js" name="technologies[]"><span>Meteor.js</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Unity" name="technologies[]"><span>Unity</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Unity" name="technologies[]"><span>Unity</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Android Studio" name="technologies[]"><span>Android Studio</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Android Studio" name="technologies[]"><span>Android Studio</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Swift" name="technologies[]"><span>Swift</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Swift" name="technologies[]"><span>Swift</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Arduino" name="technologies[]"><span>Arduino</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Arduino" name="technologies[]"><span>Arduino</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Raspbery Pi" name="technologies[]"><span>Raspbery Pi</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Raspbery Pi" name="technologies[]"><span>Raspbery Pi</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Agile" name="technologies[]"><span>Agile</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Agile" name="technologies[]"><span>Agile</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Scrum" name="technologies[]"><span>Scrum</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Scrum" name="technologies[]"><span>Scrum</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input type="checkbox" value="Wordpress" name="technologies[]"><span>Wordpress</span></label>
+                                                  <label><input class="checkboxes" type="checkbox" value="Wordpress" name="technologies[]"><span>Wordpress</span></label>
                                                 </div>
 
                                             </fieldset>

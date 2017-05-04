@@ -11,7 +11,7 @@
                         <div class="col-xs-12">
                             <a href="{{ @BASE }}/meet/{{ @user['id'] }}"><img class="logo img-responsive" src="{{ @user['image_path'] }}"></a>
                             <h5 class="text-center">{{ @user['fname'] }} {{ @user['lname'] }}</h5>
-                            <h5 class="text-center">Class of: <i>{{ @user['grad_date'] }}</i></h5>                            
+                            <h5 class="text-center hidden-xs">Class of: <i>{{ @user['grad_date'] }}</i></h5>                            
                         </div>                    
                     </div>                                      
                  </repeat>
