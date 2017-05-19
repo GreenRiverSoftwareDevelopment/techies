@@ -2,6 +2,7 @@
 <html>
     <head>
         <include href="{{ @head_title }}" />
+        <script src="{{ @BASE }}js/validation.js"></script>
     </head>
     <body id="body">
         <include href="{{ @nav }}" />
@@ -9,38 +10,40 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <h2>Student Submission Form</h2>
-                        <h4><i class="fa fa-asterisk red"></i> Indicates a required field</h4>
                     </div>
                     <div class="col-sm-6">
                         <div class="col-sm-12">
                             <form action="" method="post" class="login-form" id="signup-form">
                                     <div class="col-sm-6">
                                         <div class="col-sm-12 input-group">
-                                        <div class="input-group-addon text-center"><i class="fa fa-asterisk red"></i></div>
                                         <input type="text" class="form-control" name="fname" id="fname" class="inline-form" maxlength="50" placeholder="First Name" autofocus required>
+<h5 class="required-help">This information is required</h5>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="col-sm-12 input-group">
-                                             <div class="input-group-addon text-center"><i class="fa fa-asterisk red"></i></div>
+                                             
                                             <input type="text" class="form-control" name="lname" id="lname" class="inline-form" maxlength="50" placeholder="Last Name" required>
+<h5 class="required-help">This information is required</h5>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-12 input-group">
-                                            <input type="email" class="form-control" name="school_email" id="school_email" class="inline-form" placeholder="Student Email Address" required><span class="red">* <i>Required</i></span>
+                                            <input type="email" class="form-control" name="school_email" id="school_email" class="inline-form" placeholder="Student Email Address" required><h5 class="required-help">This information is required</h5>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-12 input-group">
-                                            <input type="email" class="form-control" name="prime_email" id="primary_email" class="inline-form" placeholder="Non-Student Email Address" required><span class="red">* <i>Required</i></span>
+                                            <input type="email" class="form-control" name="prime_email" id="primary_email" class="inline-form" placeholder="Non-Student Email Address" required><h5 class="required-help">This information is required</h5>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-12">
                                             <fieldset class="form-group radio-display">
                                               <h4>Are you a veteran of the US Armed Forces?</h4>
-                                              <span class="red">* <i>Required</i></span>
+<h5 class="required-help-slim">This information is required</h5>
+
+                                              
                                                 <div class="radio">
                                                   <label><input type="radio" value="1" name="veteran"><span>Yes</span></label>
                                                 </div>
@@ -48,14 +51,15 @@
                                                   <label><input type="radio" value="0" name="veteran" checked><span>No</span></label>
                                                 </div>
                                             </fieldset>
+
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-12">
-                                            <fieldset class="form-group radio-display">
-                                                <span class="red">* <i>Required</i></span>
-                                              <h4><i class="fa fa-asterisk red"></i> Major:</h4>
-                                                <div class="radio">
+                                            <fieldset class="form-group radio-display-lg">
+                                              <h4>Major:</h4>
+<h5 class="required-help-slim">This information is required</h5>
+                                                <div class="radio text-center">
                                                   <label><input type="radio" value="Software Development" name="degree"><span>Software Development</span></label>
                                                 </div>
                                                 <div class="radio">
@@ -66,16 +70,18 @@
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-12 form-group">
-                                            <i class="fa fa-asterisk red"></i>
+                                            
                                             <label for="bio">Elevator Pitch:</label>
+<h5 class="required-help-slim">This information is required</h5>
                                             <textarea class="form-control" name="bio" maxlength="1000" rows="10" cols="50" id="bio" placeholder="Tell us who you are, what you do best, how you have made an impact, what sets you apart, and what you are seeking. Be friendly, conversational, and concise." required></textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
                                         <div class="col-sm-12 input-group">
-                                            <div class="input-group-addon"><i class="fa fa-asterisk red"></i> Graduation Date</div>
+                                            <div class="input-group-addon">Graduation Date</div>
                                             <input type="date" class="form-control" name="graduation" id="graduation" class="inline-form" required>
                                         </div>
+<h5 class="required-help-slim">This information is required</h5>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="col-sm-12 input-group">
@@ -110,7 +116,8 @@
                                     <div class="col-sm-12 border-left">
                                         <div class="col-sm-12">
                                             <fieldset class="form-group" id="checkbox-display">
-                                              <h4><i class="fa fa-asterisk red"></i> Favorite Technologies (pick up to 5):</h4>
+                                              <h4>Favorite Technologies (pick up to 5):</h4>
+<h5 class="required-help-slim">This information is required</h5>
                                                 <div class="checkbox">
                                                   <label><input class="checkboxes" type="checkbox" value="HTML" name="technologies[]"><span>HTML</span></label>
                                                 </div>
@@ -172,9 +179,6 @@
                                                   <label><input class="checkboxes" type="checkbox" value="Unity" name="technologies[]"><span>Unity</span></label>
                                                 </div>
                                                 <div class="checkbox">
-                                                  <label><input class="checkboxes" type="checkbox" value="Android Studio" name="technologies[]"><span>Android Studio</span></label>
-                                                </div>
-                                                <div class="checkbox">
                                                   <label><input class="checkboxes" type="checkbox" value="Swift" name="technologies[]"><span>Swift</span></label>
                                                 </div>
                                                 <div class="checkbox">
@@ -192,6 +196,9 @@
                                                 <div class="checkbox">
                                                   <label><input class="checkboxes" type="checkbox" value="Wordpress" name="technologies[]"><span>Wordpress</span></label>
                                                 </div>
+                                                <div class="checkbox">
+                                                  <label><input class="checkboxes" type="checkbox" value="Android Studio" name="technologies[]"><span>Android Studio</span></label>
+                                                </div>
 
                                             </fieldset>
                                         </div>
@@ -199,7 +206,7 @@
 
                         </div>
                                 <div class="col-sm-offset-4 col-sm-4">
-                                    <input id="signup-submit" type="submit" value="Submit" class="form-control btn">
+                                    <input type="submit" value="Submit" class="form-control btn">
                                 </div>
                             </form>
 
