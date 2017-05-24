@@ -5,7 +5,7 @@
     </head>
     <body id="body">
         <include href="{{ @nav }}" />
-            <div class="container">
+            <div class="container" id="profiles">
                 <repeat group="{{ @users }}" value="{{ @user }}">
                     <div class="col-md-3 col-sm-4 col-xs-6">
                         <div class="col-xs-12">

@@ -62,11 +62,18 @@
             // if isset(post) {
             	//$user = $data->logUser($_POST);
             //}
-            $users = $data->getAllUsers();
+            $users = $data->getDisplayableUsers();
             //load the view
             $this->_f3->set('title', 'Home');
 			$this->_f3->set('users', $users);
             echo Template::instance()->render('view/home.php');
+        }
+
+        public function showSignup()
+        {
+          $this->_f3->set('title', "Sign up");
+          //load the view
+          echo Template::instance()->render('view/student-submit.php');
         }
 
         /**
@@ -81,30 +88,118 @@
         {
             $this->_f3->set('title', 'Signup');
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                $data = new DataLayer();
-                //send post data to the model
-                $user = $data->logUser($_POST['fname'], $_POST['lname'], $_POST['school_email'], $_POST['prime_email'],
-                $_POST['bio'], $_POST['veteran'], $_POST['twitter'], $_POST['linkedin'], $_POST['facebook'],
-                $_POST['portfolio'], $_POST['github'], $_POST['degree'], $_POST['graduation'], $_POST['technologies']);
+               $errors = array();
+              //first name
+              if (empty($_POST['fname'])) {
+                  $errors[] = 'Please enter a first name';
+              } else {
+                  $fname = $_POST['fname'];
+              }
 
-                if (isset($user['email'])) {
-                    //set session variables for the user
-                    $_SESSION['logged'] = $user;
-                    $this->_f3->set('logged', $_SESSION['logged']);
+              //last name
+              if (empty($_POST['lname'])) {
+                  $errors[] = 'Please enter a last name';
+              } else {
+                  $lname = $_POST['lname'];
+              }
 
-                    //When logged in, send the user to their profile
-                    header("Location: /myDashboard");
+              //school email
+              if (empty($_POST['school_email']) || !filter_var($_POST['school_email'], FILTER_VALIDATE_EMAIL)) {
+                  $errors[] = 'Please enter a valid school email';
+              } else {
+                  $school_email = $_POST['school_email'];
+              }
 
-                } else {
-                    $this->_f3->set('errors', $user);
-                }
-            } else {
-                $this->_f3->clear('errors');
+              //primary email
+              if (empty($_POST['prime_email']) || !filter_var($_POST['prime_email'], FILTER_VALIDATE_EMAIL)) {
+                  $errors[] = 'Please enter a valid primary email';
+              } else {
+                  $prime_email = $_POST['prime_email'];
+              }
+
+              //bio
+              if (empty($_POST['bio']) || strlen($_POST['bio']) > 1000) {
+                  $errors[] = 'There is something wrong with your bio';
+              } else {
+                  $bio = $_POST['bio'];
+              }
+
+              //veteran
+              if (!isset($_POST['veteran'])) {
+                  $errors[] = 'You have not selected your veteran status';
+              } else {
+                  $veteran = $_POST['veteran'];
+              }
+
+              //degree
+              if (!isset($_POST['degree'])) {
+                  $errors[] = 'You have not selected your degree';
+              } else {
+                  $degree = $_POST['degree'];
+              }
+
+              //technologies
+              if (!isset($_POST['technologies'])) {
+                  $errors[] = 'You have not selected your technologies';
+              } else {
+                  $technologies = $_POST['technologies'];
+                  $technologies = implode(", ", $technologies);
+              }
+
             }
 
-            //load the view
-            echo Template::instance()->render('view/student-submit.php');
+            if (sizeof($errors) > 0) {
+              
+            } else {
+              $data = new DataLayer();
+              //send post data to the model
+              $data->logUser($fname, $lname, $school_email, $prime_email,
+              $bio, $veteran, $_POST['twitter'], $_POST['linkedin'], $_POST['facebook'],
+              $_POST['portfolio'], $_POST['github'], $degree, $_POST['graduation'], $technologies);
+
+              $user = $data->getUserByEmail($school_email);
+
+              $_SESSION['fname'] = $user[0]['fname'];
+              $_SESSION['lname'] = $user[0]['lname'];
+              $_SESSION['school_email'] = $user[0]['school_email'];
+              $_SESSION['prime_email'] = $user[0]['prime_email'];
+              $_SESSION['bio'] = $user[0]['bio'];
+              $_SESSION['veteran'] = $user[0]['veteran'];
+              $_SESSION['twitter'] = $user[0]['twitter'];
+              $_SESSION['linkedin'] = $user[0]['linkedin'];
+              $_SESSION['facebook'] = $user[0]['facebook'];
+              $_SESSION['portfolio'] = $user[0]['portfolio'];
+              $_SESSION['github'] = $user[0]['github'];
+              $_SESSION['degree'] = $user[0]['degree'];
+              $_SESSION['graduation'] = $user[0]['graduation'];
+              $_SESSION['technologies'] = $user[0]['technologies'];
+
+              header("Location: /confirmation");
+            }
         }
+
+    public function confirmation()
+    {
+      $this->_f3->set('title', "About");
+
+      $this->_f3->set('fname', $_SESSION['fname']);
+      $this->_f3->set('lname', $_SESSION['lname']);
+      $this->_f3->set('school_email', $_SESSION['school_email']);
+      $this->_f3->set('prime_email', $_SESSION['prime_email']);
+      $this->_f3->set('bio', $_SESSION['bio']);
+      $this->_f3->set('veteran', $_SESSION['veteran']);
+      $this->_f3->set('twitter', $_SESSION['twitter']);
+      $this->_f3->set('linkedin', $_SESSION['linkedin']);
+      $this->_f3->set('facebook', $_SESSION['facebook']);
+      $this->_f3->set('portfolio', $_SESSION['portfolio']);
+      $this->_f3->set('github', $_SESSION['github']);
+      $this->_f3->set('degree', $_SESSION['degree']);
+      $this->_f3->set('graduation', $_SESSION['graduation']);
+      $this->_f3->set('technologies', $_SESSION['technologies']);
+
+      //load the view
+      echo Template::instance()->render('view/confirmation.php');
+    }
 
 		public function login()
 		{
@@ -122,29 +217,78 @@
         {
             session_unset();
             session_destroy();
-            header("Location: /home");
+            header("Location: /dashboard");
         }
 
 		public function about()
 		{
+			$data = new DataLayer();
+
+			$this->_f3->set('title', "About");
 			echo Template::instance()->render('view/about.php');
 		}
 
 		public function page($id)
 		{
 			$data = new DataLayer();
-            
+
 			//send post data to the model
             $user = $data->getSingleUser($id);
-			
+
 			$this->_f3->set('title', $user['fname'] . " " . $user['lname']);
 			$this->_f3->set('user', $user);
 			echo Template::instance()->render('view/profile.php');
 		}
 
+		public function show($id)
+		{
+			$data = new DataLayer();
+
+			//send post data to the model
+            $data->approveProfile($id);
+			header("Location: /dashboard");
+		}
+
+		public function hide($id)
+		{
+			$data = new DataLayer();
+
+			//send post data to the model
+            $data->hideProfile($id);
+			header("Location: /dashboard");
+		}
+
+		public function archive($id)
+		{
+			$data = new DataLayer();
+
+			//send post data to the model
+            $data->archiveProfile($id);
+			header("Location: /dashboard");
+		}
+
 		public function dashboard()
 		{
-			echo Template::instance()->render('view/dashboard.php');
+			$data = new DataLayer();
+			if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'])) {
+				//log the user in
+				$user = $data->login($_POST);
+				if ($user['admin'] == 1) {
+					$_SESSION['logged'] = $user;
+				}
+			}
+			if ($_SERVER['REQUEST_METHOD'] == 'POST') { // a form is being submitted (updated)
+				$user = $data->updateUser($_POST);
+			}
+			if (isset($_SESSION['logged'])) { 
+				$users = $data->getAllActiveUsers();
+				$pendindUsers = $data->getAllPendingUsers();
+				$this->_f3->set('users', $users);
+				$this->_f3->set('pendingUsers', $pendindUsers);
+			}
+            //load the view
+            $this->_f3->set('title', 'Admin Dashboard');
+			echo Template::instance()->render('view/admin/dashboard.php');
 		}
     }
 ?>

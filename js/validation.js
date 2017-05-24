@@ -4,7 +4,7 @@ $('document').ready(function() {
     var preventDefaultEvent = function (e) {
         e.preventDefault();
     };
-
+    // first name validation - blank
     $('.fname').blur(function() {
 
         var value = $('.fname').val();
@@ -16,6 +16,7 @@ $('document').ready(function() {
             removeError('.valid-first-name', 'First name: ');
         }
         
+        // first name validation - character length
         if (value.length > 50) {
             addError('.first-name-character-length', 'Character length must'
                      . ' be less than 50 characters');
@@ -26,6 +27,7 @@ $('document').ready(function() {
         }
     });
 
+    // last name validation - blank
     $('.lname').blur(function() {
 
         var value = $('.lname').val();
@@ -37,6 +39,7 @@ $('document').ready(function() {
             removeError('.valid-last-name', 'Last name: ');
         }
         
+        // last name validation - character length
         if (value.length > 50) {
             addError('.last-name-character-length', 'Character length must'
                      . ' be less than 50 characters');
@@ -47,6 +50,7 @@ $('document').ready(function() {
         }
     });
 
+    // school email validation - blank
     $('.school_email').blur(function() {
 
         var value = $('.school_email').val();
@@ -58,6 +62,7 @@ $('document').ready(function() {
             removeError('.valid-school email', 'School email: ');
         }
         
+        // school email validation - character length
         if (value.length > 100) {
             addError('.school-email-character-length', 'Character length must'
                      . ' be less than 100 characters');
@@ -69,6 +74,7 @@ $('document').ready(function() {
     });
 
 
+    // primary email validation - blank
     $('.prime_email').blur(function() {
 
         var value = $('.prime_email').val();
@@ -80,6 +86,7 @@ $('document').ready(function() {
             removeError('.valid-prime-email', 'Prime email: ');
         }
         
+        // primary email validation - character length
         if (value.length > 100) {
             addError('.prime-email-character-length', 'Character length must'
                      . ' be less than 100 characters');
@@ -90,7 +97,7 @@ $('document').ready(function() {
         }
     });
 
-
+    // add error message
     function addError(div_id_name, error_message) {
 
         var input_class = div_id_name + ' input';
@@ -102,6 +109,7 @@ $('document').ready(function() {
         $(div_id_name + " > label").html(error_message);
     };
 
+    // remove error message
     function removeError(div_id_name, ok_message) {
 
         var input_class = div_id_name + ' input';

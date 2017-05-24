@@ -1,6 +1,7 @@
 /* body styles */
 #body {
     background: #fffdf5;
+    font-family: Consolas, Arial, Helvetica, sans-serif;
 }
 
 /* div styles */
@@ -13,17 +14,21 @@
      height: 35em;
 }
 
+.input-group {
+    margin-top: 0.5em;
+}
+
 
 
 /* nav styles */
-.hover-link:hover { 
+.hover-link:hover {
     color: gray;
     text-decoration: none;
     border-bottom: 3px solid #188c3c;
-    
+
 }
 
-.about-link:hover { 
+.about-link:hover {
     color: gray;
     text-decoration: none;
 }
@@ -47,7 +52,7 @@
     line-height: 6em;
     color: black;
     font-size: 1.5em;
-    
+
 }
 h1, a {
     text-align: center;
@@ -57,11 +62,31 @@ a {
     text-decoration: none;
 }
 
+.required-help {
+margin-top: 3em;
+color: rgba(24, 140, 60, 0.8); /* rgba version of #188c3c with 20% transparency */
+font-weight: bold;
+}
+
+.required-help-slim {
+color: rgba(24, 140, 60, 0.8);
+font-weight: bold;
+}
+
 
 /* button styles */
 input[type="submit"] {
-    background-color: rgb(255, 156, 108);
+    background-color: #188c3c;
     color: white;
+    border: none;
+    
+}
+
+input[type="submit"]:hover {
+    background-color: rgba(24, 140, 60, 0.8);
+    color: white;
+    border: none;
+    
 }
 
 .button {
@@ -77,51 +102,84 @@ input[type="submit"] {
 
 /* footer styles */
 footer {
-   margin-top: 37.5em;
-   text-align: center;   
+   margin-top: 10em;
+   text-align: center;
 }
 
 /* paddings */
 
 
 #checkbox-display label {
-			border-style: solid;
-			border-width: 1.5px;
-			padding: 5px 5px 5px 5px;
-			border-radius: 5px;
-			border-color: rgb(255, 156, 108);
-            background-color: rgba(181, 219, 253, 0.2);
-			margin: 2px 2px 2px 2px;
-			display: inline-block;
-			float: left;
-			width: 8em;
-			text-align: center;
+    border-style: solid;
+    border-width: 0.5px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 15px;
+    border-color: #188c3c;
+    background-color: white;
+    margin: 2px 2px 2px 2px;
+    display: inline-block;
+    float: left;
+    width: 8em;
+    text-align: center;
 }
- 
+
+button {
+    border-style: solid;
+    border-width: 0.5px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 15px;
+    border-color: #188c3c;
+    color: white !important;
+    background-color: #188c3c;
+    margin: 2px 2px 2px 2px;
+    display: inline-block;
+    float: left;
+    width: 8em;
+    text-align: center;
+}
+
 #checkbox-display label:hover {
-	color: black;
-    letter-spacing: 2px;
-    background-color: rgb(181, 219, 253);
+    color: white;
+    background-color: #188c3c;
+    padding: 5px 5px 5px 5px;
 }
 
 .radio-display label {
 			border-style: solid;
-			border-width: 1.5px;
+    border-width: 0.5px;
 			padding: 5px 5px 5px 5px;
-			border-radius: 5px;
-			border-color: rgb(255, 156, 108);
-            background-color: rgba(181, 219, 253, 0.2);
+			border-radius: 15px;
+    border-color: #188c3c;
+    background-color: white;
 			margin: 2px 2px 2px 2px;
 			display: inline-block;
 			float: left;
 			width: 8em;
 			text-align: center;
 }
- 
+
+.radio-display-lg label {
+			border-style: solid;
+    border-width: 0.5px;
+			padding: 5px 5px 5px 5px;
+			border-radius: 15px;
+    border-color: #188c3c;
+    background-color: white;
+			margin: 2px 2px 2px 2px;
+			display: inline-block;
+			float: left;
+			width: 15em;
+			text-align: center;
+}
+
 .radio-display label:hover {
-	color: black;
-    letter-spacing: 2px;
-    background-color: rgb(181, 219, 253);
+    color: white;
+    background-color: #188c3c;
+}
+
+.radio-display-lg label:hover {
+    color: white;
+    background-color: #188c3c;
 }
 
 label input {
@@ -133,10 +191,17 @@ label {
 }
 
 input:checked + span {
-    font-weight: bold;
-    color: green;
+    color: white;
+    background-color: #188c3c;
     font-size: 1em;
-    letter-spacing: 2px;
+}
+
+.split-top {
+    margin-top: 5em;
+}
+
+.split-top-sm {
+    margin-top: 1em;
 }
 
 /* Color class's for text */
@@ -163,5 +228,17 @@ hr {
     border: solid 0.5px gray !important;
     height: 1px !important;
     width: 100% !important;
+}
+
+/* about page */
+#about {
+  font-family: Consolas, Arial, Helvetica, sans-serif;
+  font-size: 1.2em;
+}
+
+/* home page profiles page */
+#profiles {
+    padding-left: 0;
+    padding-right: 0;
 }
 
