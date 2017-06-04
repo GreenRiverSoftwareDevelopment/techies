@@ -80,8 +80,18 @@
                                                              <input type="text" class="form-control" name="github" id="github" class="inline-form" maxlength="200" value="{{ @user['github'] }}">
                                                          </div>
                                                      </div>
-                                                     <div class="col-sm-12">
-                                                         <div class="col-sm-12 input-group">
+                                                     <div class="col-sm-12 split-top-sm">
+                                                        <div class="col-sm-2">
+                                                            <check if="{{ @user['image_path'] }} != ''">
+                                                                <true>
+                                                                    <img class="logo img-responsive" src="{{ @user['image_path'] }}"  width="40" height="60">
+                                                                </true>
+                                                                <false>
+                                                                    <i class="fa fa-file-picture-o"></i>
+                                                                </false>
+                                                            </check>
+                                                        </div>
+                                                         <div class="col-sm-10 input-group">
                                                              <input type="file" name="fileToUpload" class="form-control">
                                                              <div class="input-group-addon"><i class="fa fa-photo"></i></div>
                                                          </div>
@@ -112,7 +122,12 @@
                                          </div>
                                          <div id="collapse{{ @pendingUser['id'] }}" class="panel-collapse collapse">
                                              <div class="panel-body">
-                                                 <a href="{{ @BASE }}/show/{{ @pendingUser['id'] }}" class="about-link"><h4 class="text-center"><i class="fa fa-thumbs-o-up green"></i> Make Live</h4></a>
+                                                <div class="col-md-6 col-xs-12">
+                                                    <a href="{{ @BASE }}/show/{{ @pendingUser['id'] }}" class="about-link"><h4 class="text-center"><i class="fa fa-thumbs-o-up green"></i> Make Live</h4></a>
+                                                </div>
+                                                <div class="col-md-6 col-xs-12">
+                                                    <a href="{{ @BASE }}/eliminate/{{ @pendingUser['id'] }}" class="about-link"><h4 class="text-center"><i class="fa fa-trash-o red"></i> Eliminate</h4></a>
+                                                </div>
                                                  <form action="" method="post" class="login-form" id="signup-form" enctype="multipart/form-data">
                                                      <div class="col-sm-6">
                                                          <div class="col-sm-12 input-group">
@@ -171,8 +186,18 @@
                                                              <input type="text" class="form-control" name="github" id="github" class="inline-form" maxlength="200" value="{{ @pendingUser['github'] }}">
                                                          </div>
                                                      </div>
-                                                     <div class="col-sm-12">
-                                                         <div class="col-sm-12 input-group">
+                                                     <div class="col-sm-12 split-top-sm">
+                                                        <div class="col-sm-2">
+                                                            <check if="{{ @pendingUser['image_path'] }} != ''">
+                                                                <true>
+                                                                    <img class="logo img-responsive" src="{{ @pendingUser['image_path'] }}"  width="40" height="60">
+                                                                </true>
+                                                                <false>
+                                                                    <i class="fa fa-file-picture-o"></i>
+                                                                </false>
+                                                            </check>
+                                                        </div>
+                                                         <div class="col-sm-10 input-group">
                                                              <input type="file" name="fileToUpload" class="form-control">
                                                              <div class="input-group-addon"><i class="fa fa-photo"></i></div>
                                                          </div>

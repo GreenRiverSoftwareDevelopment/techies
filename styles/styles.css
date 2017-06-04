@@ -63,14 +63,16 @@ a {
 }
 
 .required-help {
-margin-top: 3em;
-color: rgba(24, 140, 60, 0.8); /* rgba version of #188c3c with 20% transparency */
-font-weight: bold;
+    margin-top: 3em;
+    color: rgba(24, 140, 60, 0.8); /* rgba version of #188c3c with 20% transparency */
+    font-weight: bold;
+    font-family: 'Roboto', Consolas;
 }
 
 .required-help-slim {
-color: rgba(24, 140, 60, 0.8);
-font-weight: bold;
+    color: rgba(24, 140, 60, 0.8);
+    font-weight: bold;
+    font-family: 'Roboto', Consolas;
 }
 
 
@@ -90,14 +92,16 @@ input[type="submit"]:hover {
 }
 
 .button {
-    background-color: rgb(255, 156, 108);
+    background-color: #188c3c;
     border: none;
+    border-radius: 5px;
+    pointer-events: none;
     color: white;
-    padding: 10px 27px;
     text-align: center;
     text-decoration: none;
     display: block;
     font-size: 16px;
+    margin: 2px 2px 2px 2px;
 }
 
 /* footer styles */
@@ -113,7 +117,7 @@ footer {
     border-style: solid;
     border-width: 0.5px;
     padding: 5px 5px 5px 5px;
-    border-radius: 15px;
+    border-radius: 5px;
     border-color: #188c3c;
     background-color: white;
     margin: 2px 2px 2px 2px;
@@ -127,7 +131,7 @@ button {
     border-style: solid;
     border-width: 0.5px;
     padding: 5px 5px 5px 5px;
-    border-radius: 15px;
+    border-radius: 5px;
     border-color: #188c3c;
     color: white !important;
     background-color: #188c3c;
@@ -144,40 +148,40 @@ button {
     padding: 5px 5px 5px 5px;
 }
 
-.radio-display label {
-			border-style: solid;
+#radio-display label {
+	border-style: solid;
     border-width: 0.5px;
-			padding: 5px 5px 5px 5px;
-			border-radius: 15px;
+	padding: 5px 5px 5px 5px;
+	border-radius: 5px;
     border-color: #188c3c;
     background-color: white;
-			margin: 2px 2px 2px 2px;
-			display: inline-block;
-			float: left;
-			width: 8em;
-			text-align: center;
+	margin: 2px 2px 2px 2px;
+	display: inline-block;
+	float: left;
+	width: 8em;
+	text-align: center;
 }
 
-.radio-display-lg label {
-			border-style: solid;
+#radio-display-lg label {
+	border-style: solid;
     border-width: 0.5px;
-			padding: 5px 5px 5px 5px;
-			border-radius: 15px;
+	padding: 5px 5px 5px 5px;
+	border-radius: 5px;
     border-color: #188c3c;
     background-color: white;
-			margin: 2px 2px 2px 2px;
-			display: inline-block;
-			float: left;
-			width: 15em;
-			text-align: center;
+	margin: 2px 2px 2px 2px;
+	display: inline-block;
+	float: left;
+	width: 15em;
+	text-align: center;
 }
 
-.radio-display label:hover {
+#radio-display label:hover {
     color: white;
     background-color: #188c3c;
 }
 
-.radio-display-lg label:hover {
+#radio-display-lg label:hover {
     color: white;
     background-color: #188c3c;
 }
@@ -191,8 +195,9 @@ label {
 }
 
 input:checked + span {
-    color: white;
-    background-color: #188c3c;
+    font-weight: bold; 
+    color: #188c3c;
+    text-decoration: underline #188c3c;
     font-size: 1em;
 }
 
@@ -203,6 +208,15 @@ input:checked + span {
 .split-top-sm {
     margin-top: 1em;
 }
+
+.no-pad {
+    padding: 0px 0px 0px 0px !important;
+}
+
+.no-margin {
+    margin: 0px 0px 0px 0px !important;
+}
+
 
 /* Color class's for text */
 .red {
@@ -230,15 +244,27 @@ hr {
     width: 100% !important;
 }
 
-/* about page */
-#about {
-  font-family: Consolas, Arial, Helvetica, sans-serif;
-  font-size: 1.2em;
-}
 
 /* home page profiles page */
 #profiles {
     padding-left: 0;
     padding-right: 0;
+}
+
+.styled-body {
+    font-size: 1.4em;
+    font-family: Georgia, Consolas;
+}
+
+.indented {
+    text-indent: 3em;
+}
+
+.styled-heading {
+    font-family: 'Roboto', Consolas;
+}
+
+.wrap-text {
+    word-wrap: break-word;
 }
 

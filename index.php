@@ -45,16 +45,10 @@
     });
 
     //route for the sign up page
-    $f3->route('GET /signup', function($f3) {
-        $controller = new Controller($f3);
-        $controller->showSignup();
-    });
-
-    //route for the sign up page
-    $f3->route('POST /signup', function($f3) {
+    $f3->route('GET|POST /signup', function($f3) {
         $controller = new Controller($f3);
         $controller->signup();
-    });
+    });    
 
     //route for the confirmation page
     $f3->route('GET /confirmation', function($f3) {
@@ -68,19 +62,25 @@
         $controller->page($params['id']);
     });
 
-    //route for profile page
+    //route for hiding a profile (Only logged in admin should be able to click this)
     $f3->route('GET /hide/@id', function($f3, $params) {
         $controller = new Controller($f3);
         $controller->hide($params['id']);
     });
 
-    //route for profile page
+    //route for approving a profile (Only logged in admin should be able to click this)
     $f3->route('GET /show/@id', function($f3, $params) {
         $controller = new Controller($f3);
         $controller->show($params['id']);
     });
+    
+    //route for wiping a user (Only logged in admin should be able to click this)
+    $f3->route('GET /eliminate/@id', function($f3, $params) {
+        $controller = new Controller($f3);
+        $controller->eliminate($params['id']);
+    });
 
-    //route for profile page
+    //route for archiving a profile (Only logged in admin should be able to click this)
     $f3->route('GET /archive/@id', function($f3, $params) {
         $controller = new Controller($f3);
         $controller->archive($params['id']);

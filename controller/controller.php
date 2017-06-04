@@ -42,6 +42,7 @@
             $this->_f3 = $f3;
             $this->_f3->set('nav', 'view/modules/nav.php');
             $this->_f3->set('head_title', 'view/modules/head.php');
+            $this->_f3->set('problems', 'view/modules/error-display.php');
             $this->_f3->set('footer', 'view/modules/footer.php');
         }
 
@@ -69,13 +70,6 @@
             echo Template::instance()->render('view/home.php');
         }
 
-        public function showSignup()
-        {
-          $this->_f3->set('title', "Sign up");
-          //load the view
-          echo Template::instance()->render('view/student-submit.php');
-        }
-
         /**
          * Method for logic to grab the data needed to build the signup page
          *
@@ -87,119 +81,42 @@
         public function signup()
         {
             $this->_f3->set('title', 'Signup');
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-               $errors = array();
-              //first name
-              if (empty($_POST['fname'])) {
-                  $errors[] = 'Please enter a first name';
-              } else {
-                  $fname = $_POST['fname'];
-              }
-
-              //last name
-              if (empty($_POST['lname'])) {
-                  $errors[] = 'Please enter a last name';
-              } else {
-                  $lname = $_POST['lname'];
-              }
-
-              //school email
-              if (empty($_POST['school_email']) || !filter_var($_POST['school_email'], FILTER_VALIDATE_EMAIL)) {
-                  $errors[] = 'Please enter a valid school email';
-              } else {
-                  $school_email = $_POST['school_email'];
-              }
-
-              //primary email
-              if (empty($_POST['prime_email']) || !filter_var($_POST['prime_email'], FILTER_VALIDATE_EMAIL)) {
-                  $errors[] = 'Please enter a valid primary email';
-              } else {
-                  $prime_email = $_POST['prime_email'];
-              }
-
-              //bio
-              if (empty($_POST['bio']) || strlen($_POST['bio']) > 1000) {
-                  $errors[] = 'There is something wrong with your bio';
-              } else {
-                  $bio = $_POST['bio'];
-              }
-
-              //veteran
-              if (!isset($_POST['veteran'])) {
-                  $errors[] = 'You have not selected your veteran status';
-              } else {
-                  $veteran = $_POST['veteran'];
-              }
-
-              //degree
-              if (!isset($_POST['degree'])) {
-                  $errors[] = 'You have not selected your degree';
-              } else {
-                  $degree = $_POST['degree'];
-              }
-
-              //technologies
-              if (!isset($_POST['technologies'])) {
-                  $errors[] = 'You have not selected your technologies';
-              } else {
-                  $technologies = $_POST['technologies'];
-                  $technologies = implode(", ", $technologies);
-              }
-
-            }
-
-            if (sizeof($errors) > 0) {
-              
+            if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST !== $_SESSION['last-set']) {
+				$data = new DataLayer();
+				
+				//send post data to the model
+				// $user will either return with user data or errors
+				$user = $data->logUser($_POST);
+				if (isset($user['school_email'])) {
+					// the user is in the db
+					// store the good data in session for the confirmation 
+					$_SESSION['user'] = $user;
+					header("Location: /confirmation");
+                } else {
+                    $this->_f3->set('errors', $user);
+                }
             } else {
-              $data = new DataLayer();
-              //send post data to the model
-              $data->logUser($fname, $lname, $school_email, $prime_email,
-              $bio, $veteran, $_POST['twitter'], $_POST['linkedin'], $_POST['facebook'],
-              $_POST['portfolio'], $_POST['github'], $degree, $_POST['graduation'], $technologies);
-
-              $user = $data->getUserByEmail($school_email);
-
-              $_SESSION['fname'] = $user[0]['fname'];
-              $_SESSION['lname'] = $user[0]['lname'];
-              $_SESSION['school_email'] = $user[0]['school_email'];
-              $_SESSION['prime_email'] = $user[0]['prime_email'];
-              $_SESSION['bio'] = $user[0]['bio'];
-              $_SESSION['veteran'] = $user[0]['veteran'];
-              $_SESSION['twitter'] = $user[0]['twitter'];
-              $_SESSION['linkedin'] = $user[0]['linkedin'];
-              $_SESSION['facebook'] = $user[0]['facebook'];
-              $_SESSION['portfolio'] = $user[0]['portfolio'];
-              $_SESSION['github'] = $user[0]['github'];
-              $_SESSION['degree'] = $user[0]['degree'];
-              $_SESSION['graduation'] = $user[0]['graduation'];
-              $_SESSION['technologies'] = $user[0]['technologies'];
-
-              header("Location: /confirmation");
+                $this->_f3->clear('errors');
             }
-        }
+            //load the view
+            echo Template::instance()->render('view/student-submit.php');
+        } 
 
-    public function confirmation()
-    {
-      $this->_f3->set('title', "About");
-
-      $this->_f3->set('fname', $_SESSION['fname']);
-      $this->_f3->set('lname', $_SESSION['lname']);
-      $this->_f3->set('school_email', $_SESSION['school_email']);
-      $this->_f3->set('prime_email', $_SESSION['prime_email']);
-      $this->_f3->set('bio', $_SESSION['bio']);
-      $this->_f3->set('veteran', $_SESSION['veteran']);
-      $this->_f3->set('twitter', $_SESSION['twitter']);
-      $this->_f3->set('linkedin', $_SESSION['linkedin']);
-      $this->_f3->set('facebook', $_SESSION['facebook']);
-      $this->_f3->set('portfolio', $_SESSION['portfolio']);
-      $this->_f3->set('github', $_SESSION['github']);
-      $this->_f3->set('degree', $_SESSION['degree']);
-      $this->_f3->set('graduation', $_SESSION['graduation']);
-      $this->_f3->set('technologies', $_SESSION['technologies']);
-
-      //load the view
-      echo Template::instance()->render('view/confirmation.php');
-    }
+		public function confirmation()
+		{
+			//Prevent the user from navigating to the confirmation page on their own
+			if (!isset($_SESSION['user'])) {
+				header("Location: /home");
+			} else {
+				$this->_f3->set('title', "Confirmation");	
+				$this->_f3->set('user', $_SESSION['user']);
+				session_unset();
+				session_destroy();
+		  
+				//load the view
+				echo Template::instance()->render('view/confirmation.php');	
+			}
+		}
 
 		public function login()
 		{
@@ -234,9 +151,55 @@
 
 			//send post data to the model
             $user = $data->getSingleUser($id);
+			
+			//Figure out how many social media links are filled in
+			$count = 0;
+			$social = array();
+			//check Linkedin
+			if (strpos($user['linkedin'], "http") !== false) {
+				$count++;
+			} else {
+				$user['linkedin'] == '';
+			}
+			if (strpos($user['github'], "http") !== false) {
+				$count++;
+			} else {
+				$user['github'] == '';
+			}
+			if (strpos($user['twitter'], "http") !== false) {
+				$count++;
+			} else {
+				$user['twitter'] == '';
+			}
+			if (strpos($user['facebook'], "http") !== false) {
+				$count++;
+			} else {
+				$user['facebook'] == '';
+			}
+			if (strpos($user['portfolio'], "http") !== false) {
+				$count++;
+			} else {
+				$user['portfolio'] == '';
+			}
+			
+			//set bootstrap cols
+			if ($count == 1) {
+				$cols = 'col-xs-12';
+			} else if ($count == 2) {
+				$cols = 'col-xs-6';
+			} else if ($count == 3) {
+				$cols = 'col-xs-4';
+			} else if ($count == 4) {
+				$cols = 'col-xs-3';
+			} else if ($count == 5) {
+				$cols = 'col-xs-2';
+			} else {
+				$cols = '';
+			}
 
 			$this->_f3->set('title', $user['fname'] . " " . $user['lname']);
 			$this->_f3->set('user', $user);
+			$this->_f3->set('cols', $cols);
 			echo Template::instance()->render('view/profile.php');
 		}
 
@@ -255,6 +218,15 @@
 
 			//send post data to the model
             $data->hideProfile($id);
+			header("Location: /dashboard");
+		}
+		
+		public function eliminate($id)
+		{
+			$data = new DataLayer();
+
+			//send post data to the model
+            $data->eliminateProfile($id);
 			header("Location: /dashboard");
 		}
 

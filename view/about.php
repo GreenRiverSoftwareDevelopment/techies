@@ -6,27 +6,27 @@
     <body id="body">
         <include href="{{ @nav }}" />
             <div class="container">
-              <div class="col-xs-12 col-md-7" id="about">
+              <div class="col-xs-12 col-md-7 styled-body" id="about">
                 <p>
                   Green River Techies is a photo web project that showcases the diverse backgrounds and stories of software development students in the Pacific Northwest.
-                  It derives unequivocal inspiration from <a href="http://www.techiesproject.com/">techiesproject.com</a>,
+                  It derives unequivocal inspiration from <a href="http://www.techiesproject.com/" target="_blank">techiesproject.com</a>,
                   a gorgeous website from the mind of Helena Price designed to spotlight workers underrepresented in the tech sector — with a twist.
                 </p>
                 <p>
                   While techiesproject.com depicts employees in Silicon Valley,
                   Green River Techies focuses exclusively on students pursuing a bachelor’s degree in
                   software development at Green River College, a mid-sized community college at the
-                  heart of Seattle-Tacoma and <a href="http://time.com/4148233/college-student-diversity-top-campuses/">Time’s #1 most diversified college</a> of 2015.
+                  heart of Seattle-Tacoma and <a href="http://time.com/4148233/college-student-diversity-top-campuses/" target="_blank">Time’s #1 most diversified college</a> of 2015.
                 </p>
                 <p>
-                  Our <a href="http://www.greenriver.edu/academics/areas-of-study/bas-programs/software-development.htm">bachelor’s in software development</a> is home to traditional students,
+                  Our <a href="http://www.greenriver.edu/academics/areas-of-study/bas-programs/software-development.htm" target="_blank">bachelor’s in software development</a> is home to traditional students,
                   transitioning Veterans, international students, and career changers alike.
                   Green River Techies now provides a beautiful way to celebrate their work.
                 </p>
                 <p>
                   This project also sheds light on the role public community colleges play in
                   expanding the tech talent pipeline for companies in Seattle-Tacoma.
-                  By entering the four-year degree space, Green River presents <a href="https://medium.com/green-river-web-mobile-developers/open-letter-to-big-tech-two-simple-words-can-help-you-diversify-4b02613d9cf0">a compelling solution</a>
+                  By entering the four-year degree space, Green River presents <a href="https://medium.com/green-river-web-mobile-developers/open-letter-to-big-tech-two-simple-words-can-help-you-diversify-4b02613d9cf0" target="_blank">a compelling solution</a>
                   for helping regional tech diversify its workforce.
                 </p>
                 <p>

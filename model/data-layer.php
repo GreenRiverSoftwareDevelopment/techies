@@ -43,57 +43,125 @@
             $this->_pdo = getConnection();
         }
 
-        //methods
-        public function logUser($fname, $lname, $school_email, $prime_email, $bio, $veteran, $twitter, $linkedin, $facebook, $portfolio, $github, $degree, $graduation, $technologies)
+        /* methods */
+        
+        /**
+         * Method for adding a user to the DB
+         *
+         * This method performs back end validation and performs
+         * the query to add a user to the DB who has properly filled
+         * out the signup form
+         *
+         * @access public
+         * @param  mixed  $data     The post data being passed from the controller
+         * @return array  $data     An assoc array of the information the user entered originally
+         * @return array  $errors   The errors found during validation
+         */
+        public function logUser($data)
         {
-
-          //$technologies = implode(", ", $technologies);
-
-          $insert = 'INSERT INTO profiles (fname, lname, school_email, prime_email, bio, veteran, twitter, linkedin, facebook, portfolio, github, degree, graduation, technologies)
-                     VALUES (:fname, :lname, :school_email, :prime_email, :bio, :veteren, :twitter, :linkedin, :facebook, :portfolio, :github, :degree, :graduation, :technologies)';
-
-          $statement = $this->_pdo->prepare($insert);
-          $statement->bindValue(':fname', $fname, PDO::PARAM_STR);
-          $statement->bindValue(':lname', $lname, PDO::PARAM_STR);
-          $statement->bindValue(':school_email', $school_email, PDO::PARAM_STR);
-          $statement->bindValue(':prime_email', $prime_email, PDO::PARAM_STR);
-          $statement->bindValue(':bio', $bio, PDO::PARAM_STR);
-          $statement->bindValue(':veteren', $veteran, PDO::PARAM_STR);
-          $statement->bindValue(':twitter', $twitter, PDO::PARAM_STR);
-          $statement->bindValue(':linkedin', $linkedin, PDO::PARAM_STR);
-          $statement->bindValue(':facebook', $facebook, PDO::PARAM_STR);
-          $statement->bindValue(':portfolio', $portfolio, PDO::PARAM_STR);
-          $statement->bindValue(':github', $github, PDO::PARAM_STR);
-          $statement->bindValue(':degree', $degree, PDO::PARAM_STR);
-          $statement->bindValue(':graduation', $graduation, PDO::PARAM_STR);
-          $statement->bindValue(':technologies', $technologies, PDO::PARAM_STR);
-
-          return $statement->execute();
+            
+            $errors = array();
+              //first name
+              if (empty($data['fname'])) {
+                  $errors[] = 'Please enter a first name';
+              } elseif (strlen($data['fname']) > 50) {
+                  $errors[] = 'First name must be less than 50 letters';
+              } else {
+                  $fname = $data['fname'];
+              }
+            
+              //last name
+              if (empty($data['lname'])) {
+                  $errors[] = 'Please enter a last name';
+              } elseif (strlen($data['lname']) > 50) {
+                  $errors[] = 'Last name must be less than 50 letters';
+              } else {
+                  $lname = $data['lname'];
+              }
+            
+              //school email
+              if (empty($data['school_email']) || !filter_var($data['school_email'], FILTER_VALIDATE_EMAIL)) {
+                  $errors[] = 'Please enter a valid school email';
+              } else {
+                  $school_email = $data['school_email'];
+              }
+            
+              //primary email
+              if (empty($data['prime_email']) || !filter_var($data['prime_email'], FILTER_VALIDATE_EMAIL)) {
+                  $errors[] = 'Please enter a valid primary email';
+              } else {
+                  $prime_email = $data['prime_email'];
+              }
+            
+              //bio
+              if (empty($data['bio']) || strlen($data['bio']) > 1000) {
+                  $errors[] = 'There is something wrong with your bio';
+              } else {
+                  $bio = $data['bio'];
+              }
+            
+              //veteran
+              if (!isset($data['veteran'])) {
+                  $errors[] = 'You have not selected your veteran status';
+              } else {
+                  $veteran = $data['veteran'];
+              }
+            
+              //degree
+              if (!isset($data['degree'])) {
+                  $errors[] = 'You have not selected your degree';
+              } else {
+                  $degree = $data['degree'];
+              }
+            
+              //technologies
+              if (!isset($data['technologies'])) {
+                  $errors[] = 'You have not selected your technologies';
+              } else {
+                  $technologies = $data['technologies'];
+                  $technologies = implode(", ", $technologies);
+                  $data['technologies'] = $technologies; // show a string on confirmation page
+              }              
+            if (sizeof($errors) == 0) {
+                $insert = 'INSERT INTO profiles (fname, lname, school_email, prime_email, bio, veteran, twitter, linkedin, facebook, portfolio, github, degree, graduation, technologies)
+                           VALUES (:fname, :lname, :school_email, :prime_email, :bio, :veteren, :twitter, :linkedin, :facebook, :portfolio, :github, :degree, :graduation, :technologies)';
+      
+                $statement = $this->_pdo->prepare($insert);
+                $statement->bindValue(':fname', $fname, PDO::PARAM_STR);
+                $statement->bindValue(':lname', $lname, PDO::PARAM_STR);
+                $statement->bindValue(':school_email', $school_email, PDO::PARAM_STR);
+                $statement->bindValue(':prime_email', $prime_email, PDO::PARAM_STR);
+                $statement->bindValue(':bio', $bio, PDO::PARAM_STR);
+                $statement->bindValue(':veteren', $veteran, PDO::PARAM_STR);
+                $statement->bindValue(':twitter', $twitter, PDO::PARAM_STR);
+                $statement->bindValue(':linkedin', $linkedin, PDO::PARAM_STR);
+                $statement->bindValue(':facebook', $facebook, PDO::PARAM_STR);
+                $statement->bindValue(':portfolio', $portfolio, PDO::PARAM_STR);
+                $statement->bindValue(':github', $github, PDO::PARAM_STR);
+                $statement->bindValue(':degree', $degree, PDO::PARAM_STR);
+                $statement->bindValue(':graduation', $data['graduation'], PDO::PARAM_STR);
+                $statement->bindValue(':technologies', $technologies, PDO::PARAM_STR);
+      
+                $statement->execute();
+                
+                return $data;   
+            } else {
+                return $errors;
+            }
         }
 
-        public function addAdmin($email, $password)
-        {
-
-          //convert my password to a hash
-          $digest = password_hash($password, PASSWORD_DEFAULT);
-
-          $insert = 'INSERT INTO admins (email, password)
-                               VALUES(:email, :password)';
-
-          //compile a prepared statement on the server
-          $statement = $this->_pdo->prepare($insert);
-
-          //bind inputes to the prepared statement
-          $statement->bindValue(':email',$email, PDO::PARAM_STR);
-          $statement->bindValue(':password',$digest, PDO::PARAM_STR);
-
-          //exec() is used for INSERT, UPDATE & DELETE
-          //returns the number of records that were altered or false (if none)
-          $result = $statement->execute();
-
-          return $result;
-        }
-
+        /**
+        * Method verifying that a user exists and that the password matches
+        *
+        * Note that this is a recycled method from
+        * and inclass example where passwords has to be verified
+        * with a hashed password on the database
+        *
+        * @access public
+        * @param  string  $email     The user's supposed email address
+        * @param  string  $password  The user's supposed password
+        * @return boolean            Ttrue if the insert was successful, otherwise false
+        */
         public function verifyUser($email, $password)
         {
 
@@ -121,6 +189,16 @@
             }
           }
 
+        /**
+         * Method for selecting a user from the DB based off school email
+         *
+         * This method queries the DB for information about a user
+         * based off a given email address, returning everything about 
+         *
+         * @access public
+         * @param  string  $school_email     The post data being passed from the controller
+         * @return array   $row              The assoc array of user information
+         */
           function getUserByEmail($school_email)
           {
               $pdo = getConnection();
@@ -138,10 +216,24 @@
               return $row;
           }
 
+        /**
+         * Method for selecting all displayable users
+         *
+         * This method runs a query on the DB grabbing
+         * all users who are approved for being featured
+         * on the site. This means their visibility boolean is set to true
+         * while their queued boolean is set to false. Since this method is primarily used for
+         * the home page, not every field is selected.
+         *
+         * @access public
+         * @return array  $rows   An assoc array with all of the displayable users.
+         *                        This array is two dementional, each array index in $rows
+         *                        corresponds to an array of values for that user.
+         */
           public function getDisplayableUsers()
           {
 
-              $select = "SELECT id, fname, lname, image_path, DATE_FORMAT(graduation,'%b %Y') AS grad_date FROM profiles WHERE visibility = 1 AND queued = 0";
+              $select = "SELECT id, fname, lname, image_path, DATE_FORMAT(graduation,'%Y') AS grad_date FROM profiles WHERE visibility = 1 AND queued = 0";
 
               $results = $this->_pdo->query($select);
 
@@ -149,7 +241,20 @@
 
               return $rows;
           }
-
+       
+        /**
+         * Method for selecting all active users
+         *
+         * This method runs a query on the DB grabbing
+         * all users who are approved for being featured
+         * on the site. This means their visibility boolean is set to true
+         * while their queued boolean is set to false. 
+         *
+         * @access public
+         * @return array  $rows   An assoc array with all of the "active" users.
+         *                        This array is two dementional, each array index in $rows
+         *                        corresponds to an array of values for that user.
+         */
           public function getAllActiveUsers()
           {
 
@@ -161,7 +266,20 @@
 
               return $rows;
           }
-
+       
+        /**
+         * Method for selecting all pending users
+         *
+         * This method runs a query on the DB grabbing
+         * all users who are pending being featured
+         * on the site. This means their visibility boolean is set to false
+         * while their queued boolean is set to true. 
+         *
+         * @access public
+         * @return array  $rows   An assoc array with all of the pending users.
+         *                        This array is two dementional, each array index in $rows
+         *                        corresponds to an array of values for that user.
+         */
           public function getAllPendingUsers()
           {
 
@@ -173,6 +291,19 @@
               return $rows;
           }
 
+        /**
+         * Method for selecting all archived users
+         *
+         * This method runs a query on the DB grabbing
+         * all users who are archived on the site.
+         * This means their visibility boolean is set to false
+         * while their queued boolean is set to false.
+         *
+         * @access public
+         * @return array  $rows   An assoc array with all of the archived users.
+         *                        This array is two dementional, each array index in $rows
+         *                        corresponds to an array of values for that user.
+         */
           public function getAllPArchivedUsers()
           {
 
@@ -184,10 +315,25 @@
               return $rows;
           }
 
+        /**
+         * Method for selecting a single user
+         *
+         * This method runs a query on the DB grabbing
+         * all of the relevent information about a user
+         * based off a given id number. Since this method
+         * is primarily used for filling a profile page it
+         * only grabs whats needed for the profile
+         * 
+         * @access public
+         * @param  integer  $id   The id of the uer
+         * @return array    $row  An assoc array with all of the displayable users.
+         *                        This array is two dementional, each array index in $rows
+         *                        corresponds to an array of values for that user.
+         */
           public function getSingleUser($id)
           {
 
-              $select = "SELECT id, fname, lname, image_path, degree, technologies, bio, veteran, twitter, linkedin, facebook, github, portfolio, DATE_FORMAT(graduation,'%b %Y') AS grad_date FROM profiles
+              $select = "SELECT id, fname, lname, image_path, degree, technologies, bio, veteran, twitter, linkedin, facebook, github, portfolio, DATE_FORMAT(graduation,'%Y') AS grad_date FROM profiles
                                WHERE id=:id";
 
               $statement = $this->_pdo->prepare($select);
@@ -202,32 +348,27 @@
 
           public function updateUser($data)
           {
-            if (!isset($data['image_path']) || $data['image_path'] = '') {
-                $data['image_path'] = ''; // if there isn't a photo being uploaded leave the path blank
-            } else {
+            if (isset($data['image_path']) && $data['image_path'] == '') {
                 require_once('photo-upload.php');
                 $data['image_path'] = handleImage();
-            }
-              $statement = 'UPDATE profiles SET image_path=:imagePath WHERE id=:id';
+            } 
+              $statement = 'UPDATE profiles SET fname=:fname, lname=:lname, school_email=:schoolEmail, prime_email=:primaryEmail,
+              bio=:bio, twitter=:twitter, facebook=:facebook, github=:github, portfolio=:portfolio, linkedin=:linkedin, image_path=:imagePath WHERE id=:id';
 
               $statement = $this->_pdo->prepare($statement);
 
               $statement->bindValue(':id', intval($data['id']), PDO::PARAM_INT);
-              /*$statement->bindValue(':name', $fname, PDO::PARAM_STR);
-              $statement->bindValue(':type', $lname, PDO::PARAM_STR);*/
+              $statement->bindValue(':fname', $data['fname'], PDO::PARAM_STR);
+              $statement->bindValue(':lname', $data['lname'], PDO::PARAM_STR);
+              $statement->bindValue(':schoolEmail', $data['school_email'], PDO::PARAM_STR);
+              $statement->bindValue(':primaryEmail', $data['prime_email'], PDO::PARAM_STR);
+              $statement->bindValue(':bio', $data['bio'], PDO::PARAM_STR);
+              $statement->bindValue(':twitter', $data['twitter'], PDO::PARAM_STR);
+              $statement->bindValue(':facebook', $data['facebook'], PDO::PARAM_STR);
+              $statement->bindValue(':github', $data['github'], PDO::PARAM_STR);
+              $statement->bindValue(':portfolio', $data['portfolio'], PDO::PARAM_STR);
+              $statement->bindValue(':linkedin', $data['linkedin'], PDO::PARAM_STR);
               $statement->bindValue(':imagePath', $data['image_path'], PDO::PARAM_STR);
-              /*$statement->bindValue(':schoolEmail', $schoolEmail, PDO::PARAM_STR);
-              $statement->bindValue(':primaryEmail', $primaryEmail, PDO::PARAM_STR);
-              $statement->bindValue(':bio', $bio, PDO::PARAM_STR);
-              $statement->bindValue(':veteren', $veteren, PDO::PARAM_STR);
-              $statement->bindValue(':twitter', $twitter, PDO::PARAM_STR);
-              $statement->bindValue(':linkedIn', $linkedIn, PDO::PARAM_STR);
-              $statement->bindValue(':facebook', $facebook, PDO::PARAM_STR);
-              $statement->bindValue(':portfolio', $portfolio, PDO::PARAM_STR);
-              $statement->bindValue(':github', $github, PDO::PARAM_STR);
-              $statement->bindValue(':degree', $degree, PDO::PARAM_STR);
-              $statement->bindValue(':graduation', $graduation, PDO::PARAM_STR);
-              $statement->bindValue(':technologies', $technologies, PDO::PARAM_STR);*/
 
               return $statement->execute();
           }
@@ -248,6 +389,18 @@
           {
 
               $statement = 'UPDATE profiles SET visibility = 0, queued = 1 WHERE id=:id';
+
+              $statement = $this->_pdo->prepare($statement);
+
+              $statement->bindValue(':id', $id, PDO::PARAM_INT);
+
+              return $statement->execute();
+          }
+          
+          public function eliminateProfile($id)
+          {
+
+              $statement = 'DELETE FROM profiles WHERE id=:id';
 
               $statement = $this->_pdo->prepare($statement);
 

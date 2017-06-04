@@ -1,5 +1,6 @@
-$('document').ready(function() {
-
+$(document).ready(function()
+{
+    //alert("HELLO");
     "use strict";
     var preventDefaultEvent = function (e) {
         e.preventDefault();
@@ -14,16 +15,23 @@ $('document').ready(function() {
         }
         else {
             removeError('.valid-first-name', 'First name: ');
+            var fname = document.getElementById("fname_form");
+            fname.className += " has-success";
+            
+            var fnameGlyph = document.getElementById("fname_glyph");
+            fnameGlyph.className += "glyphicon glyphicon-ok-sign form-control-feedback";
+            //document.getElementById('fname_form').addClass('has-success');
+            //document.getElementById('fname_glyph').addClass('glyphicon glyphicon-ok-sign form-control-feedback');
         }
         
         // first name validation - character length
         if (value.length > 50) {
-            addError('.first-name-character-length', 'Character length must'
-                     . ' be less than 50 characters');
+            addError('.first-name-character-length', `Character length must'
+                        + ' be less than 50 characters`);
         }
         else {
-            removeError('.first-name-character-length', 'Character length must'
-                     . ' be less than 50 characters');
+            removeError('.first-name-character-length', `Character length must'
+                        + ' be less than 50 characters`);
         }
     });
 
@@ -41,12 +49,12 @@ $('document').ready(function() {
         
         // last name validation - character length
         if (value.length > 50) {
-            addError('.last-name-character-length', 'Character length must'
-                     . ' be less than 50 characters');
+            addError('.last-name-character-length', `Character length must'
+                     . ' be less than 50 characters`);
         }
         else {
-            removeError('.last-name-character-length', 'Character length must'
-                     . ' be less than 50 characters');
+            removeError('.last-name-character-length', `Character length must'
+                     . ' be less than 50 characters`);
         }
     });
 
@@ -64,12 +72,12 @@ $('document').ready(function() {
         
         // school email validation - character length
         if (value.length > 100) {
-            addError('.school-email-character-length', 'Character length must'
-                     . ' be less than 100 characters');
+            addError('.school-email-character-length', `Character length must'
+                     . ' be less than 100 characters`);
         }
         else {
-            removeError('.school-email-character-length', 'Character length must'
-                     . ' be less than 100 characters');
+            removeError('.school-email-character-length', `Character length must'
+                     . ' be less than 100 characters`);
         }
     });
 
@@ -88,12 +96,12 @@ $('document').ready(function() {
         
         // primary email validation - character length
         if (value.length > 100) {
-            addError('.prime-email-character-length', 'Character length must'
-                     . ' be less than 100 characters');
+            addError('.prime-email-character-length', `Character length must'
+                     . ' be less than 100 characters`);
         }
         else {
-            removeError('.prime-email-character-length', 'Character length must'
-                     . ' be less than 100 characters');
+            removeError('.prime-email-character-length', `Character length must'
+                     . ' be less than 100 characters`);
         }
     });
 
@@ -103,10 +111,10 @@ $('document').ready(function() {
         var input_class = div_id_name + ' input';
 
         $('form').bind('submit', preventDefaultEvent);
-        $(div_id_name).addClass("has-error has-feedback");
-        $(input_class).addClass("form-control danger red");
-        $(div_id_name + " > span").addClass("glyphicon glyphicon-remove form-control-feedback");
-        $(div_id_name + " > label").html(error_message);
+        jQuery(this).parent('div').addClass('has-error');
+        //$(div_id_name).addClass("has-error has-feedback");
+        //$(div_id_name + " > span").addClass("glyphicon glyphicon-remove form-control-feedback");
+        //$(div_id_name + " > label").html(error_message);
     };
 
     // remove error message
