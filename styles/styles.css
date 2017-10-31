@@ -10,8 +10,8 @@
 }
 
 .bio-area {
-     background-color: white;
-     height: 35em;
+    background-color: white;
+    height: 35em;
 }
 
 .input-group {
@@ -81,14 +81,14 @@ input[type="submit"] {
     background-color: #188c3c;
     color: white;
     border: none;
-    
+
 }
 
 input[type="submit"]:hover {
     background-color: rgba(24, 140, 60, 0.8);
     color: white;
     border: none;
-    
+
 }
 
 .button {
@@ -106,26 +106,11 @@ input[type="submit"]:hover {
 
 /* footer styles */
 footer {
-   margin-top: 10em;
-   text-align: center;
-}
-
-/* paddings */
-
-
-#checkbox-display label {
-    border-style: solid;
-    border-width: 0.5px;
-    padding: 5px 5px 5px 5px;
-    border-radius: 5px;
-    border-color: #188c3c;
-    background-color: white;
-    margin: 2px 2px 2px 2px;
-    display: inline-block;
-    float: left;
-    width: 8em;
+    margin-top: 10em;
     text-align: center;
 }
+
+
 
 button {
     border-style: solid;
@@ -142,63 +127,12 @@ button {
     text-align: center;
 }
 
-#checkbox-display label:hover {
-    color: white;
-    background-color: #188c3c;
-    padding: 5px 5px 5px 5px;
-}
-
-#radio-display label {
-	border-style: solid;
-    border-width: 0.5px;
-	padding: 5px 5px 5px 5px;
-	border-radius: 5px;
-    border-color: #188c3c;
-    background-color: white;
-	margin: 2px 2px 2px 2px;
-	display: inline-block;
-	float: left;
-	width: 8em;
-	text-align: center;
-}
-
-#radio-display-lg label {
-	border-style: solid;
-    border-width: 0.5px;
-	padding: 5px 5px 5px 5px;
-	border-radius: 5px;
-    border-color: #188c3c;
-    background-color: white;
-	margin: 2px 2px 2px 2px;
-	display: inline-block;
-	float: left;
-	width: 15em;
-	text-align: center;
-}
-
-#radio-display label:hover {
-    color: white;
-    background-color: #188c3c;
-}
-
-#radio-display-lg label:hover {
-    color: white;
-    background-color: #188c3c;
-}
-
 label input {
-	display: none;
+    display: none;
 }
 
 label {
     text-align: center;
-}
-
-input:checked + span {
-    font-weight: bold; 
-    color: #188c3c;
-    text-decoration: underline #188c3c;
-    font-size: 1em;
 }
 
 .split-top {
@@ -220,15 +154,15 @@ input:checked + span {
 
 /* Color class's for text */
 .red {
-	color: red;
+    color: red;
 }
 
 .orange {
-	color: orange;
+    color: orange;
 }
 
 .green {
-	color: green;
+    color: green;
 }
 
 .blue {
@@ -268,3 +202,91 @@ hr {
     word-wrap: break-word;
 }
 
+/*
+    form button styles
+ */
+
+
+#checkbox-display label{
+    display: inline-block;
+    float: left;
+    text-align: center;
+}
+#checkbox-display label span {
+    border-style: solid;
+    border-width: 0.5px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
+    border-color: #188c3c;
+    background-color: white;
+    margin: 2px 2px 2px 2px;
+    float: left;
+    width: 8em;
+
+}
+
+#checkbox-display input:checked + span{
+    background-color: #188c3c;
+    color: #ffffff;
+}
+
+#checkbox-display span:hover{
+    background-color: #188c3c;
+    color: #ffffff;
+}
+
+#radio-display label{
+    float: left;
+    display: inline-block;
+}
+
+#radio-display label span {
+    border-style: solid;
+    border-width: 0.5px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
+    border-color: #188c3c;
+    background-color: white;
+    margin: 2px 2px 2px 2px;
+    float: left;
+    width: 8em;
+    text-align: center;
+}
+
+#radio-display-lg label{
+    display: inline-block;
+    float: left;
+}
+
+#radio-display-lg label span {
+    border-style: solid;
+    border-width: 0.5px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 5px;
+    border-color: #188c3c;
+    background-color: white;
+    margin: 2px 2px 2px 2px;
+
+    width: 15em;
+    text-align: center;
+}
+
+#radio-display input:checked + span{
+    background-color: #188c3c;
+    color: #ffffff;
+}
+
+#radio-display-lg input:checked + span{
+    background-color: #188c3c;
+    color: #ffffff;
+}
+
+#radio-display label:hover span{
+    color: white;
+    background-color: #188c3c;
+}
+
+#radio-display-lg label:hover span {
+    color: white;
+    background-color: #188c3c;
+}
